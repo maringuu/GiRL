@@ -2,6 +2,9 @@ import igraph as ig
 import numpy as np
 
 
+graph = ig.Graph.Read_Pickle("data/ogbn-arxiv.pickle")
+
+
 def task1():
     print(f"Vertex count: {len(graph.vs)}")
     print(f"Edge count: {len(graph.es)}")
@@ -27,12 +30,11 @@ def task1():
 
 
 def task2():
-    pass
+    smaller_mask = np.array(graph.vs["year"]) < 2019
+    v_1 = graph.vs.select(smaller_mask.squeeze().nonzero())
+    v_2 = graph.vs.select((not smaller_mask).squeeze().nonzero())
 
 
-def task3():
-    pass
-
-
-def main():
+if __name__ == "__main__":
     task1()
+    task2()
