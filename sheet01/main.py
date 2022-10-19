@@ -4,6 +4,8 @@ import numpy as np
 
 def task1():
     graph = ig.Graph.Read_Pickle('data/ogbn-arxiv.pickle')
+    print(f"Amount of vertices: {graph.vcount()}")
+    print(f"Amount of edges: {graph.ecount()}")
     # TODO account for the fact that multiple papers can have the same amount of citations
     citations = graph.degree(graph.vs, mode="in")
     most_citations_vertex = np.argsort(citations)[-1]
